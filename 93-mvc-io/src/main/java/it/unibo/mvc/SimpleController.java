@@ -18,8 +18,8 @@ public final class SimpleController implements Controller {
 
     @Override
     public void setNextString(final String s) {
-        if (s == null) {
-            throw new IllegalStateException("String is null");
+        if (s.isBlank()) {
+            throw new IllegalStateException("String should not be null");
         } else {
             this.nextString = s;
         }
@@ -38,7 +38,7 @@ public final class SimpleController implements Controller {
     @Override
     public void printString() {
         if (nextString.isBlank()) {
-            throw new IllegalStateException();
+            throw new IllegalStateException("String has not been set");
         } else {
             history.add(getNextString());
             System.out.println(getNextString()); // NOPMD Intentional design as we don't use log
