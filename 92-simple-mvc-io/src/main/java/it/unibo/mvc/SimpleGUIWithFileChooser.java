@@ -30,7 +30,7 @@ private static final String TITLE = "Simple MVC";
     private final JFrame frame = new JFrame(TITLE);
 
     /**
-     * Builds a GUI capable of choosing different files to write in.
+     * Builds a simple GUI capable of choosing different files to write in.
      */
     public SimpleGUIWithFileChooser() {
         final JPanel canvas = new JPanel();
