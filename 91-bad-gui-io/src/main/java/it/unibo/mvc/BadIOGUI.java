@@ -67,7 +67,7 @@ public class BadIOGUI {
                  * This would be VERY BAD in a real application.
                  *
                  * This makes the Event Dispatch Thread (EDT) work on an I/O
-                 * operation. I/O operations may take a long time, during which
+                 * operation. I/O operations may take a long time, durin which
                  * your UI becomes completely unresponsive.
                  */
                 try (PrintStream ps = new PrintStream(PATH, StandardCharsets.UTF_8)) {
@@ -82,11 +82,15 @@ public class BadIOGUI {
         read.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(final ActionEvent press) {
-                final PrintStream ps = System.out;
+                /*Alternative method:
+                try {
+                    for (final var line: Files.readAllLines(Path.of(PATH))) {
+                        System.out.println(line); // NOPMD: allowed as we don't use log
+                    } */
                 try (BufferedReader read = Files.newBufferedReader(Paths.get(PATH), StandardCharsets.UTF_8)) {
                     String s = read.readLine();
                     while (s != null) {
-                        ps.println(s);
+                        System.out.println(s); // NOPMD: allowed as we don't use log
                         s = read.readLine();
                     }
                 } catch (final IOException e) {
